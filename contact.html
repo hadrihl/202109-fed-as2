@@ -95,6 +95,11 @@
 
       <!-- JS scripts section -->
       <script>
+        function validateEmail(mail) {
+          var res = /\S+@\S+\.\S+/;
+          return res.test(mail);
+        }
+
         jQuery(document).ready(function() {
 
           // check cookie if visited already from the past
@@ -117,13 +122,21 @@
             let email = jQuery('#email').val();
             let message = jQuery('#message').val();
 
-            // dumb way to store into cookie
-            jQuery.cookie('name', name);
-            jQuery.cookie('email', email);
-            let x = jQuery.cookie('message', message);
+            if(name == "" || email == "" || message == "") { // validate all forms
+              alert("Please enter missing information.");
 
-            // debug
-            console.log(x);
+            } else if(validateEmail(email) == false) { // validate email, anything@anything.anything
+              alert("Please enter correct email address.");
+
+            } else { //store data into cookie
+              jQuery.cookie('name', name);
+              jQuery.cookie('email', email);
+              jQuery.cookie('message', message);
+              
+              console.log(`${name}, ${email}, ${message}`);
+              alert('information sent succesfully.')
+            }
+
           });
 
         });
