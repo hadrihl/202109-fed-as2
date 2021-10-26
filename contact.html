@@ -1,46 +1,14 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-
         <title>ABC Learning Center</title>
-        <!-- Bootstrap core CSS -->
         <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="assets/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     </head>
+    <body>
+        <!-- header section -->
+        <header id="header"></header>
 
-    <body class="bg-light">
-    <main>
-            <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container-fluid d-flex navbar-collapse">
-                <a class="navbar-brand d-flex" href="index.html">
-                    <img src="assets/brand/ABC.svg" width="38" height="30" class="me-3">
-                    ABC Learning Center</a>
-            </div>
-            
-            <div class="navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sitemap.html">Sitemap</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="privacy.html">Privacy</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
+        <!-- ADD HERE -->
         <!-- hero section -->
         <section class="container">
           <div class="row py-lg-5">
@@ -54,7 +22,7 @@
           <div class="container row py-lg-5" id="popup-container">
             <div class="popup-window">
               <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>  
                   <a href="#" class="your-class"></a>
               </div>
 
@@ -83,64 +51,52 @@
           <!-- endof hero section -->
     </main>
 
-        <footer class="text-muted py-5">
-            <div class="container">
-              <p class="float-end mb-1">
-                <a href="#">Back to top</a>
-              </p>
-              <p class="mb-1"><a href="index.html">ABC Learning Center</a> &copy; 2021. Made with love in Penang.</p>
-            </div>
-        </footer>   
-        <!-- endoffooter-->
+<!-- footer section -->
+<footer id="footer"></footer>
+</body>
 
-      <!-- JS scripts section -->
-      <script>
-        function validateEmail(mail) {
-          var res = /\S+@\S+\.\S+/;
-          return res.test(mail);
+<script src="assets/jquery-3.6.0.min.js"></script>
+<script src="assets/js.cookie.min.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  function validateEmail(email) {
+    var res = /\S+@\S+\.\S+/;
+    return res.test(email);
+
+    $(document).ready(function() {
+      var visited = $.cookie('visited');
+
+      if(visited == null) {
+        $.cookie('visited', 'yes', { expires: 1, path: '/' });
+
+      } else {
+        console.log($.cookie('visited'));
+      }
+
+      //close pupup-container
+      $('.close').click(function() {
+        $('#popup-container').fadeOut();
+      });
+
+      $('#submit').click(function() {
+        let name = $('#name').val();
+        let email = $('#email').val();
+        let message = $('#message').val();
+
+        //validate forms
+        if(name == "" || email == "" || message == "") {
+          alert("Please enter missing information.");
+
+        } else if(validateEmail(email) == false) {
+          alert("Please enter valid email address.");
+
+        } else {
+          $.cookie('name', name);
+          $.cookie('email', email);
+          $.cookie('message', message);
         }
-
-        jQuery(document).ready(function() {
-
-          // check cookie if visited already from the past
-          var visited = jQuery.cookie('visited');
-
-          if(visited == null) {
-            jQuery.cookie('visited', 'yes', { expires: 1, path: '/' }); // set 1 day expire
-          } else {
-            console.log(jQuery.cookie('visited'));
-          }
-
-          // close pupup message
-          jQuery('.close').click(function() {
-            jQuery('#popup-container').fadeOut();
-          });
-
-          // get info
-          jQuery('#submit').click(function() {
-            let name = jQuery('#name').val();
-            let email = jQuery('#email').val();
-            let message = jQuery('#message').val();
-
-            if(name == "" || email == "" || message == "") { // validate all forms
-              alert("Please enter missing information.");
-
-            } else if(validateEmail(email) == false) { // validate email, anything@anything.anything
-              alert("Please enter correct email address.");
-
-            } else { //store data into cookie
-              jQuery.cookie('name', name);
-              jQuery.cookie('email', email);
-              jQuery.cookie('message', message);
-              
-              console.log(`${name}, ${email}, ${message}`);
-              alert('information sent succesfully.')
-            }
-
-          });
-
-        });
-      </script>
-
-    </body>
+      });
+    });
+  };
+</script>
 </html>
