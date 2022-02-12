@@ -49,16 +49,18 @@
 
             <!-- registration section -->
             <div class="form-group">
+              <form method="POST" action="assets/form.php">
               <label>Name: </label>
-              <input type="text" id="name" /><br>
+              <input type="text" id="name" name="name" /><br>
               <label>Email: </label>
-              <input type="text" id="email" /><br>
+              <input type="text" id="email" name="email" /><br>
               <label>Password: </label>
-              <input type="text" id="password" /><br>
+              <input type="text" id="password" name="passwd" /><br>
               <label>Confirmed Password: </label>
               <input type="text" id="cpassword" /><br>
 
-              <input type="button" id="register" value="Register" /><br>
+              <input type="submit" name="submit" value="Register" /><br>
+              </form>
             </div>
             <!-- end of registration section -->
 
