@@ -18,7 +18,7 @@
             die("Connection failed!" . mysqli_connect_error());
         }
 
-        $sql = "INSERT INTO acc (id, name, email, passwd) VALUES ('7', '$fname', '$femail', '$fpasswd')";
+        $sql = "INSERT INTO acc (id, name, email, passwd) VALUES ('8', '$fname', '$femail', '$fpasswd')";
 
         $rs = mysqli_query($conn, $sql);
 

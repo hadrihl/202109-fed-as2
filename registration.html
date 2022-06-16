@@ -44,23 +44,21 @@
         <section class="container">
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Registration</h1>
-              </div>
+                <h3 class="fw-light">Register</h1>
 
-            <!-- registration section -->
             <div class="form-group">
               <form method="POST" action="assets/form.php">
               <label>Name: </label>
-              <input type="text" id="name" name="name" /><br>
+              <input type="text" class="form-control" id="name" name="name" />
               <label>Email: </label>
-              <input type="text" id="email" name="email" /><br>
+              <input type="text" class="form-control" id="email" name="email" />
               <label>Password: </label>
-              <input type="text" id="password" name="passwd" /><br>
+              <input type="text" class="form-control" id="password" name="passwd" />
               <label>Confirmed Password: </label>
-              <input type="text" id="cpassword" /><br>
-
-              <input type="submit" name="submit" value="Register" /><br>
+              <input type="text" class="form-control" id="cpassword" name="cpasswd" />
+              <button type="submit" class="btn btn-primary mb-2" name="submit">Submit</button>
               </form>
+            </div>
             </div>
             <!-- end of registration section -->
 
